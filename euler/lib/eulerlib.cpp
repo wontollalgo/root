@@ -81,4 +81,48 @@ namespace eulerlib
 		std::istringstream(string) >> numb;
 		return numb;
 	}
+
+	void getDivisors(int num, divisorMap &returnMap)
+	{
+		if(isPrime(num))
+			returnMap[num] = 1;
+
+		int counter;
+
+		for(int i = 2; i <= sqrt(num) + 1; i++)
+		{
+			if(num%i == 0)
+			{
+				counter = 0;
+				while(num%i == 0)
+				{
+					counter++;
+					num = num / i;
+				}
+
+				returnMap[i] = counter;
+	
+				if(isPrime(num))
+					returnMap[num] = 1;
+			}
+		}
+		return;
+	}
+
+	int getNumOfDivisors(int num)
+	{
+		divisorMap divisors;
+		int numOfDivisors = 1;
+
+		getDivisors(num, divisors);
+
+		for (std::map<int,int>::iterator it=divisors.begin(); it!=divisors.end(); ++it)
+                {
+                        numOfDivisors = numOfDivisors * (it->second + 1);
+
+                }
+
+		return numOfDivisors;
+	
+	}
 }

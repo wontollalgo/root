@@ -1,6 +1,6 @@
 # build an executable named myprog from myprog.c
- all: eulerlib.cpp
-	g++ -c eulerlib.cpp
+ all: eulerlib.cpp NxMNumericMatrix.cpp
+	g++ -c eulerlib.cpp NxMNumericMatrix.cpp
 
 clean:
-	rm eulerlib.o
+	rm eulerlib.o NxMNumericMatrix.o
